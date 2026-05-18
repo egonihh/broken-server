@@ -1,0 +1,55 @@
+#!/bin/bash
+
+echo ""
+echo " ┌─────────────────────────────────────────────────┐"
+echo " │  CHECKING Room 4: Log Investigation             │"
+echo " └─────────────────────────────────────────────────┘"
+echo ""
+
+PASS=0
+FAIL=0
+
+# Check 1: serverlogs directory exists and has files
+COUNT=$(find /tmp/serverlogs -type f 2>/dev/null | wc -l)
+if [ "$COUNT" -ge 6 ]; then
+  echo "  PASS  /tmp/serverlogs contains $COUNT log files"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  /tmp/serverlogs is missing or has too few files"
+  echo "        Re-run setup.sh to restore the log files"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 2: suspicious file exists and contains ERROR lines
+SUSPICIOUS=$(grep -l "ERROR" /tmp/serverlogs/* 2>/dev/null)
+if [ -n "$SUSPICIOUS" ]; then
+  echo "  PASS  Suspicious file identified: $SUSPICIOUS"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  Could not find a file containing ERROR entries"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 3: the password leak line exists
+if grep -q "password=" /tmp/serverlogs/* 2>/dev/null; then
+  echo "  PASS  Plaintext password leak detected in logs"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  Password leak line not found"
+  echo "        Look more carefully: grep 'password' /tmp/serverlogs/*"
+  FAIL=$((FAIL+1))
+fi
+
+echo ""
+if [ $FAIL -eq 0 ]; then
+  echo "  ✓ All checks passed! ($PASS/3)"
+  echo ""
+  echo "  ╔═════════════════════════════════════════════════╗"
+  echo "  ║  ALL FOUR CASES SOLVED.                        ║"
+  echo "  ║  The server is clean. The intern has been      ║"
+  echo "  ║  sent home. Good work, team.                   ║"
+  echo "  ╚═════════════════════════════════════════════════╝"
+else
+  echo "  ✗ $FAIL check(s) failed. Keep investigating."
+fi
+echo ""

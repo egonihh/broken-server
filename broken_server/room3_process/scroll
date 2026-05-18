@@ -1,0 +1,65 @@
+ +══════════════════════════════════════════════════════════+
+ ║  BROKEN SERVER — INCIDENT REPORT                        ║
+ ║  Case File #003: The Ghost in the Machine               ║
+ +══════════════════════════════════════════════════════════+
+
+ Two down. You take a sip of coffee.
+ Then you notice the server fan spinning loudly.
+ The system feels sluggish. Something is eating the CPU.
+
+ One last message from the intern:
+
+   "I ran a quick test script earlier to check something.
+    I think I forgot to stop it. It might still be
+    running. I don't know how to kill it. Sorry. — The Intern"
+
+ Your job: find the rogue process and terminate it.
+
+ ──────────────────────────────────────────────────────────
+ COMMAND REFERENCE
+ ──────────────────────────────────────────────────────────
+ top
+   Live view of running processes sorted by CPU usage.
+   Press q to quit.
+
+ ps aux
+   Snapshot of all running processes.
+   Key columns: USER, PID, %CPU, COMMAND
+
+ ps aux | grep <name>
+   Filter process list by name.
+
+ cat /proc/<pid>/status
+   Read live kernel data about a process.
+   Shows: Name, State, PID, PPid, memory usage.
+
+ kill -SIGTERM <pid>
+   Sends a termination signal to a process.
+   Asks it to stop cleanly.
+
+ kill -SIGKILL <pid>
+   Forces a process to stop immediately.
+   Use if SIGTERM doesn't work.
+
+ ps aux | grep <name>
+   Run again after killing to confirm it is gone.
+
+ ──────────────────────────────────────────────────────────
+ YOUR TASK
+ ──────────────────────────────────────────────────────────
+ 1. Open top and identify the process hammering the CPU.
+    Note its name. Press q to exit.
+
+ 2. Use ps aux | grep <name> to find its PID.
+
+ 3. Read /proc/<pid>/status — show the audience
+    the State, PPid, and memory fields.
+    Explain: this data is generated live by the kernel.
+    It is not a file stored on disk.
+
+ 4. Kill the process with SIGTERM.
+
+ 5. Confirm it is gone with ps aux | grep <name>.
+
+ When done, run:   bash check
+ ──────────────────────────────────────────────────────────

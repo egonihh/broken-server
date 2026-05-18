@@ -1,0 +1,43 @@
+#!/bin/bash
+
+echo ""
+echo " ┌─────────────────────────────────────────────────┐"
+echo " │  CHECKING Room 3: Rogue Process                 │"
+echo " └─────────────────────────────────────────────────┘"
+echo ""
+
+PASS=0
+FAIL=0
+
+# Check 1: cpu_hog.sh is no longer running
+if pgrep -f cpu_hog.sh > /dev/null 2>&1; then
+  echo "  FAIL  cpu_hog.sh is still running"
+  echo "        Find its PID with: ps aux | grep cpu_hog"
+  echo "        Then kill it with: kill -SIGTERM <pid>"
+  FAIL=$((FAIL+1))
+else
+  echo "  PASS  cpu_hog.sh is no longer running"
+  PASS=$((PASS+1))
+fi
+
+# Check 2: /proc entry is gone
+HOG_PID=$(pgrep -f cpu_hog.sh 2>/dev/null)
+if [ -z "$HOG_PID" ]; then
+  echo "  PASS  No /proc entry for cpu_hog.sh (process is dead)"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  /proc/$HOG_PID still exists — process still alive"
+  FAIL=$((FAIL+1))
+fi
+
+echo ""
+if [ $FAIL -eq 0 ]; then
+  echo "  ✓ All checks passed! ($PASS/2)"
+  echo ""
+  echo "  ─────────────────────────────────────────────────"
+  echo "  Next room:  cd ../room4_logs && cat scroll"
+  echo "  ─────────────────────────────────────────────────"
+else
+  echo "  ✗ $FAIL check(s) failed. Keep investigating."
+fi
+echo ""

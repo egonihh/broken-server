@@ -1,0 +1,60 @@
+#!/bin/bash
+
+echo ""
+echo " ┌─────────────────────────────────────────────────┐"
+echo " │  CHECKING Room 2: PATH Configuration            │"
+echo " └─────────────────────────────────────────────────┘"
+echo ""
+
+PASS=0
+FAIL=0
+
+# Check 1: ~/mytools exists
+if [ -d ~/mytools ]; then
+  echo "  PASS  ~/mytools directory exists"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/mytools directory not found"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 2: fix_report.sh exists and is executable
+if [ -x ~/mytools/fix_report.sh ]; then
+  echo "  PASS  ~/mytools/fix_report.sh exists and is executable"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/mytools/fix_report.sh missing or not executable"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 3: ~/mytools is in PATH
+if echo "$PATH" | grep -q "$HOME/mytools\|~/mytools"; then
+  echo "  PASS  ~/mytools is in PATH"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/mytools is not in PATH"
+  echo "        Try: export PATH=\$PATH:~/mytools"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 4: command is findable by name
+if which fix_report.sh &>/dev/null; then
+  echo "  PASS  fix_report.sh is findable by name via PATH"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  fix_report.sh still not found by name"
+  echo "        Check your PATH again: echo \$PATH"
+  FAIL=$((FAIL+1))
+fi
+
+echo ""
+if [ $FAIL -eq 0 ]; then
+  echo "  ✓ All checks passed! ($PASS/4)"
+  echo ""
+  echo "  ─────────────────────────────────────────────────"
+  echo "  Next room:  cd ../room3_process && cat scroll"
+  echo "  ─────────────────────────────────────────────────"
+else
+  echo "  ✗ $FAIL check(s) failed. Keep investigating."
+fi
+echo ""

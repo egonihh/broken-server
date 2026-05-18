@@ -1,0 +1,59 @@
+ +══════════════════════════════════════════════════════════+
+ ║  BROKEN SERVER — INCIDENT REPORT                        ║
+ ║  Case File #004: The Paper Trail                        ║
+ +══════════════════════════════════════════════════════════+
+
+ Three problems down. One to go.
+ Your manager just called:
+
+   "Security flagged something in the logs from last night.
+    The intern had access to /tmp/serverlogs before we
+    locked things down. We don't know what they left in
+    there. Can you go through the logs and find anything
+    suspicious? We need to know what we're dealing with."
+
+ There are several log files in /tmp/serverlogs/.
+ One of them is not like the others.
+
+ ──────────────────────────────────────────────────────────
+ COMMAND REFERENCE
+ ──────────────────────────────────────────────────────────
+ find <directory> -type f
+   Lists all files inside a directory recursively.
+
+ wc -l <file>
+   Counts the number of lines in a file.
+
+ wc -l /tmp/serverlogs/*
+   Counts lines in all files at once.
+   The file with the most lines is suspicious.
+
+ wc -l /tmp/serverlogs/* | sort -n
+   Sorts the results numerically — smallest to largest.
+   Pipe the output to see which file stands out.
+
+ grep <pattern> <file>
+   Searches for lines matching a pattern.
+   Example: grep "ERROR" /tmp/serverlogs/*
+     Searches all log files for lines with ERROR.
+
+ cat <file>
+   Prints the full contents of a file.
+
+ ──────────────────────────────────────────────────────────
+ YOUR TASK
+ ──────────────────────────────────────────────────────────
+ 1. Use find to list all files in /tmp/serverlogs/.
+
+ 2. Use wc -l piped into sort -n to rank the files
+    by line count. Which one is suspiciously large?
+
+ 3. Use grep "ERROR" across all log files to find
+    which one contains error entries.
+
+ 4. Use cat to read the suspicious file in full.
+    Explain to the audience what you found and why
+    it is a security problem.
+
+ When done, run:   bash check
+ ──────────────────────────────────────────────────────────

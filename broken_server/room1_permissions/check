@@ -1,0 +1,53 @@
+#!/bin/bash
+
+echo ""
+echo " ┌─────────────────────────────────────────────────┐"
+echo " │  CHECKING Room 1: File Permissions              │"
+echo " └─────────────────────────────────────────────────┘"
+echo ""
+
+PASS=0
+FAIL=0
+
+# Check 1: report.sh exists
+if [ -f ~/report.sh ]; then
+  echo "  PASS  ~/report.sh exists"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/report.sh not found"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 2: report.sh is executable by owner
+PERMS=$(stat -c "%a" ~/report.sh 2>/dev/null)
+if [ "$PERMS" = "755" ] || [ "$PERMS" = "744" ] || [ "$PERMS" = "700" ] || [ "$PERMS" = "711" ]; then
+  echo "  PASS  ~/report.sh has execute permission (octal: $PERMS)"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/report.sh is not executable (octal: $PERMS)"
+  echo "        Expected 755 — try: chmod 755 ~/report.sh"
+  FAIL=$((FAIL+1))
+fi
+
+# Check 3: report.sh actually runs
+OUTPUT=$(~/report.sh 2>/dev/null)
+if echo "$OUTPUT" | grep -q "SYSTEM REPORT"; then
+  echo "  PASS  ~/report.sh runs and produces output"
+  PASS=$((PASS+1))
+else
+  echo "  FAIL  ~/report.sh did not produce expected output"
+  echo "        Make sure permissions are fixed and try running it"
+  FAIL=$((FAIL+1))
+fi
+
+echo ""
+if [ $FAIL -eq 0 ]; then
+  echo "  ✓ All checks passed! ($PASS/3)"
+  echo ""
+  echo "  ─────────────────────────────────────────────────"
+  echo "  Next room:  cd ../room2_path && cat scroll"
+  echo "  ─────────────────────────────────────────────────"
+else
+  echo "  ✗ $FAIL check(s) failed. Keep investigating."
+fi
+echo ""

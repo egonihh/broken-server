@@ -1,0 +1,49 @@
+ +══════════════════════════════════════════════════════════+
+ ║  BROKEN SERVER — INCIDENT REPORT                        ║
+ ║  Case File #001: The Silent Script                      ║
+ +══════════════════════════════════════════════════════════+
+
+ It is 08:00 on a Monday morning.
+ You have just arrived at work and received this message:
+
+   "Hey... so I was cleaning up some files last night
+    and I may have accidentally run chmod on a few things.
+    report.sh won't run anymore. No idea what I did.
+    Sorry. — The Intern"
+
+ Your job: figure out what happened and fix it.
+
+ ──────────────────────────────────────────────────────────
+ COMMAND REFERENCE
+ ──────────────────────────────────────────────────────────
+ ls -l <file>
+   Lists file details including permission bits.
+   The first column shows: rwxrwxrwx
+   (owner / group / others — read / write / execute)
+
+ stat <file>
+   Shows detailed metadata about a file including
+   its full permission set in both symbolic and octal.
+
+ chmod <permissions> <file>
+   Changes file permissions.
+   Example: chmod 755 file.sh
+     7 = rwx (owner)
+     5 = r-x (group)
+     5 = r-x (others)
+
+ ──────────────────────────────────────────────────────────
+ YOUR TASK
+ ──────────────────────────────────────────────────────────
+ 1. Try to run ~/report.sh and observe what happens.
+
+ 2. Use ls -l and stat to diagnose the permission problem.
+    Explain to the audience what the output tells you.
+
+ 3. Fix the permissions so the script can be executed
+    by the owner. Use chmod 755.
+
+ 4. Run ~/report.sh successfully.
+
+ When done, run:   bash check
+ ──────────────────────────────────────────────────────────

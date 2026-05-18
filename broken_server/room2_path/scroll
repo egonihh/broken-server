@@ -1,0 +1,48 @@
+ +══════════════════════════════════════════════════════════+
+ ║  BROKEN SERVER — INCIDENT REPORT                        ║
+ ║  Case File #002: The Vanishing Command                  ║
+ +══════════════════════════════════════════════════════════+
+
+ Good work fixing report.sh.
+ But the intern left another message:
+
+   "Oh also I put a new tool called fix_report.sh in
+    a folder called mytools. It's in your home directory.
+    You should be able to just type fix_report.sh to
+    run it from anywhere. I think. Maybe. — The Intern"
+
+ You try it. Nothing. Command not found.
+ The file exists. So why can't the shell find it?
+
+ ──────────────────────────────────────────────────────────
+ COMMAND REFERENCE
+ ──────────────────────────────────────────────────────────
+ echo $PATH
+   Prints the list of directories the shell searches
+   through when you type a command name.
+   Directories are separated by colons (:).
+
+ export PATH=$PATH:<directory>
+   Adds a new directory to PATH without removing
+   the existing ones.
+   Example: export PATH=$PATH:~/mytools
+
+ which <command>
+   Shows the full path of a command if the shell
+   can find it in PATH.
+
+ ──────────────────────────────────────────────────────────
+ YOUR TASK
+ ──────────────────────────────────────────────────────────
+ 1. Try running fix_report.sh and observe the error.
+
+ 2. Use echo $PATH to inspect the current PATH.
+    Can you spot what is missing?
+
+ 3. Use export to add ~/mytools to PATH.
+
+ 4. Run fix_report.sh successfully by name alone
+    (no path prefix like ./ or ~/mytools/).
+
+ When done, run:   bash check
+ ──────────────────────────────────────────────────────────
