@@ -63,7 +63,7 @@ echo "2026-05-20 08:11:01 ERROR unauthorized process spawned by uid 1001" >> /tm
 
 echo ""
 echo "  ┌─────────────────────────────────────────┐"
-echo "  │  Environment ready. Good luck, team.    │"
+echo "  │  The broken enviroment is now ready.    │"
 echo "  │                                         │"
 echo "  │  Start here:                            │"
 echo "  │    cd room1_permissions && cat scroll   │"
