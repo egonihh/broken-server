@@ -27,8 +27,6 @@
     which one contains error entries.
 
  4. Use cat to read the suspicious file in full.
-    Explain to the audience what you found and why
-    it is a security problem.
 
  When done, run:   bash check
  ──────────────────────────────────────────────────────────
