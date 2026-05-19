@@ -16,31 +16,6 @@
  One of them is not like the others.
 
  ──────────────────────────────────────────────────────────
- COMMAND REFERENCE
- ──────────────────────────────────────────────────────────
- find <directory> -type f
-   Lists all files inside a directory recursively.
-
- wc -l <file>
-   Counts the number of lines in a file.
-
- wc -l /tmp/serverlogs/*
-   Counts lines in all files at once.
-   The file with the most lines is suspicious.
-
- wc -l /tmp/serverlogs/* | sort -n
-   Sorts the results numerically — smallest to largest.
-   Pipe the output to see which file stands out.
-
- grep <pattern> <file>
-   Searches for lines matching a pattern.
-   Example: grep "ERROR" /tmp/serverlogs/*
-     Searches all log files for lines with ERROR.
-
- cat <file>
-   Prints the full contents of a file.
-
- ──────────────────────────────────────────────────────────
  YOUR TASK
  ──────────────────────────────────────────────────────────
  1. Use find to list all files in /tmp/serverlogs/.

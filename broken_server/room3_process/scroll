@@ -16,35 +16,6 @@
  Your job: find the rogue process and terminate it.
 
  ──────────────────────────────────────────────────────────
- COMMAND REFERENCE
- ──────────────────────────────────────────────────────────
- top
-   Live view of running processes sorted by CPU usage.
-   Press q to quit.
-
- ps aux
-   Snapshot of all running processes.
-   Key columns: USER, PID, %CPU, COMMAND
-
- ps aux | grep <name>
-   Filter process list by name.
-
- cat /proc/<pid>/status
-   Read live kernel data about a process.
-   Shows: Name, State, PID, PPid, memory usage.
-
- kill -SIGTERM <pid>
-   Sends a termination signal to a process.
-   Asks it to stop cleanly.
-
- kill -SIGKILL <pid>
-   Forces a process to stop immediately.
-   Use if SIGTERM doesn't work.
-
- ps aux | grep <name>
-   Run again after killing to confirm it is gone.
-
- ──────────────────────────────────────────────────────────
  YOUR TASK
  ──────────────────────────────────────────────────────────
  1. Open top and identify the process hammering the CPU.

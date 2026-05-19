@@ -15,23 +15,6 @@
  The file exists. So why can't the shell find it?
 
  ──────────────────────────────────────────────────────────
- COMMAND REFERENCE
- ──────────────────────────────────────────────────────────
- echo $PATH
-   Prints the list of directories the shell searches
-   through when you type a command name.
-   Directories are separated by colons (:).
-
- export PATH=$PATH:<directory>
-   Adds a new directory to PATH without removing
-   the existing ones.
-   Example: export PATH=$PATH:~/mytools
-
- which <command>
-   Shows the full path of a command if the shell
-   can find it in PATH.
-
- ──────────────────────────────────────────────────────────
  YOUR TASK
  ──────────────────────────────────────────────────────────
  1. Try running fix_report.sh and observe the error.
