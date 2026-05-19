@@ -23,10 +23,7 @@
 
  2. Use ps aux | grep <name> to find its PID.
 
- 3. Read /proc/<pid>/status — show the audience
-    the State, PPid, and memory fields.
-    Explain: this data is generated live by the kernel.
-    It is not a file stored on disk.
+ 3. Read /proc/<pid>/status 
 
  4. Kill the process with SIGTERM.
 
