@@ -45,16 +45,6 @@ cd ../room4_logs && cat scroll
 
 ---
 
-### The Split
-
-| Person | Room | Problem |
-|--------|------|---------|
-| Person 1 | room1 + room2 | Broken permissions + missing PATH |
-| Person 2 | room3 | Runaway process eating CPU |
-| Person 3 | room4 | Suspicious log files |
-
----
-
 ### If something goes wrong
 
 Just reset everything by opening a **fresh terminal** and running:
