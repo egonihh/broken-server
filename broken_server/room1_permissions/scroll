@@ -19,10 +19,9 @@
  1. Try to run ~/report.sh and observe what happens.
 
  2. Use ls -l and stat to diagnose the permission problem.
-    Explain to the audience what the output tells you.
 
  3. Fix the permissions so the script can be executed
-    by the owner. Use chmod 755.
+    by the owner.
 
  4. Run ~/report.sh successfully.
 
